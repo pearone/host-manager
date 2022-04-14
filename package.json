@@ -9,7 +9,7 @@
         "lint": "npm-run-all -p lint:fix lint:script lint:style",
         "lint:fix": "prettier --loglevel=error -w src",
         "lint:script": "eslint --fix --ext .ts,tsx src",
-        "lint:style": "stylelint --fix src/**/*.{css,less}"
+        "lint:style": "stylelint --fix src/**/*.{css,less} --custom-syntax postcss-less"
     },
     "engines": {
         "node": ">=16.0.0",
