@@ -1,9 +1,10 @@
-import { useMemo } from 'react';
+// import { useMemo } from 'react';
 
 export const useManagerContext = () => {
-    return useMemo(() => {
-        return {};
-    }, []);
+    return {};
+    // return useMemo(() => {
+    //     return {};
+    // }, []);
 };
 
 export type ManagerContextStore = ReturnType<typeof useManagerContext>;

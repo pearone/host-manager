@@ -2,7 +2,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { ManagerContextStore, useManagerContext } from './common/context';
-import App from './App';
+import Container from './container';
 import './index.css';
 
 const ManagerContext = React.createContext<ManagerContextStore>(
@@ -19,7 +19,7 @@ if (container) {
     root.render(
         <React.StrictMode>
             <ManagerContext.Provider value={store}>
-                <App />
+                <Container />
             </ManagerContext.Provider>
         </React.StrictMode>
     );
