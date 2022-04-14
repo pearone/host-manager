@@ -3,7 +3,9 @@
     "minimum_chrome_version": "24",
     "version": "0.0.0",
     "scripts": {
-        "dev": "vite",
+        "dev": "run-p watch:ts watch:js",
+        "watch:ts": "tsc -w",
+        "watch:js": "vite build --watch",
         "build": "tsc && vite build",
         "preview": "vite preview",
         "lint": "npm-run-all -p lint:fix lint:script lint:style",

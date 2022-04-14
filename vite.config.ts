@@ -4,5 +4,6 @@ import { chromeExtension } from 'rollup-plugin-chrome-extension';
 import manifest from './manifest.json';
 
 export default defineConfig({
-    plugins: [react(), chromeExtension({ manifest })]
+    base: './',
+    plugins: [react()]
 });
