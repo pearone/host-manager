@@ -6,7 +6,7 @@ function Container() {
     const host = new HostProxy();
     console.log(host);
 
-    return <div className={'container'}>aaa</div>;
+    return <div className={'container'}>aaabbb</div>;
 }
 
 export default Container;
