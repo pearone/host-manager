@@ -1,5 +1,5 @@
 /*global chrome*/
-class HostProxy {
+class HostProxyImpl {
     constructor() {
         const config = {
             mode: 'fixed_servers',
@@ -11,8 +11,8 @@ class HostProxy {
             }
         };
 
-        // console.log(chrome);
-        // console.log(chrome.proxy);
+        console.log(chrome);
+        console.log('proxy', chrome.proxy);
         // console.log(
         //     chrome,
         //     chrome.proxy.settings.set(
@@ -28,4 +28,4 @@ class HostProxy {
     }
 }
 
-export default HostProxy;
+export default HostProxyImpl;

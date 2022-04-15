@@ -16,6 +16,7 @@
     "background": {
         "service_worker": "background.js"
     },
+    "default_locale": "en",
     "permissions": ["notifications", "proxy", "storage"],
     "host_permissions": ["*://*/*"],
     "icons": {
