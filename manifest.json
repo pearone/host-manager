@@ -17,7 +17,13 @@
         "service_worker": "background.js"
     },
     "default_locale": "en",
-    "permissions": ["notifications", "proxy", "storage"],
+    "permissions": [
+        "notifications",
+        "proxy",
+        "storage",
+        "cookies",
+        "<all_urls>"
+    ],
     "host_permissions": ["*://*/*"],
     "icons": {
         "16": "icons/16.png",
