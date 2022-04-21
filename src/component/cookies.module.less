@@ -1,0 +1,22 @@
+.cookies-panel {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+
+    .search-button {
+        display: flex;
+        width: calc(@container_width - 30px);
+        margin-bottom: 15px;
+    }
+
+    :global {
+        .ant-table {
+            font-size: 12px !important;
+        }
+    }
+}
+
+:global(.ant-tabs-content) {
+    height: 100% !important;
+}

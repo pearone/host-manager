@@ -13,12 +13,12 @@ export default defineConfig({
     css: {
         preprocessorOptions: {
             less: {
+                javascriptEnabled: true,
                 modifyVars: {
                     hack: `true; @import (reference) "${path.resolve(
                         'src/styles/base.less'
                     )}";`
-                },
-                javascriptEnabled: true
+                }
             }
         }
     },

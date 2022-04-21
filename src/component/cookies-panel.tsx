@@ -1,12 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
 import CookiesImpl from '@/common/cookies';
-import { Button, Input, Space, Table } from 'antd';
+import { Button, Input, Table } from 'antd';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { showErrorMessage, showSuccessMessage } from '@/common/utils';
-import { CopyOutlined, DeleteOutlined } from '@ant-design/icons';
+import { CheckOutlined, CopyOutlined, DeleteOutlined } from '@ant-design/icons';
 import { ColumnsType } from 'antd/lib/table';
+import './cookies.module.less';
+import styles from './cookies.module.less';
 
 const { Search } = Input;
+
+// TODO:
+// 可以修改cookies
+// 保存搜索词在下一次页面打开时还存在
 
 function CookiesPanel() {
     const [cookies, setCookies] = useState<chrome.cookies.Cookie[]>([]);
@@ -30,7 +36,7 @@ function CookiesPanel() {
         {
             title: 'domain',
             dataIndex: 'domain',
-            fixed: 'left',
+            // fixed: 'left',
             width: 130,
             render: (text: any) => (
                 <span style={{ color: '#1890ff' }}>{text}</span>
@@ -45,7 +51,7 @@ function CookiesPanel() {
         {
             title: 'value',
             dataIndex: 'value',
-            render: (text: any) => {
+            render: (text: any, record: any) => {
                 return (
                     <div style={{ wordBreak: 'break-all' }}>
                         <CopyToClipboard
@@ -53,7 +59,7 @@ function CookiesPanel() {
                             onCopy={(text, result) => {
                                 result
                                     ? showSuccessMessage(
-                                          'cookies value 复制成功!'
+                                          `${record.name} value 复制成功!`
                                       )
                                     : showErrorMessage('复制失败，请重试。');
                             }}
@@ -73,16 +79,12 @@ function CookiesPanel() {
             width: 160
         },
         {
-            title: 'hostOnly',
-            dataIndex: 'hostOnly',
-            width: 80,
-            render: (text: any) => text.toString()
-        },
-        {
             title: 'httpOnly',
             dataIndex: 'httpOnly',
             width: 80,
-            render: (text: any) => text.toString()
+            render: (text: any) => {
+                return text ?? <CheckOutlined />;
+            }
         },
         {
             title: 'sameSite',
@@ -99,7 +101,6 @@ function CookiesPanel() {
             title: 'Action',
             key: 'action',
             width: 80,
-            fixed: 'right',
             align: 'center',
             render: (_: any, record: any) => (
                 <a
@@ -135,24 +136,19 @@ function CookiesPanel() {
     };
 
     return (
-        <div
-            style={{
-                display: 'flex',
-                width: '100%',
-                height: '100%',
-                flexDirection: 'column'
-            }}
-        >
-            <Search
-                placeholder='搜索cookies信息'
-                onSearch={onSearch}
-                allowClear
-                enterButton
-                className={'cookies-search-button'}
-            />
+        <div className={styles['cookies-panel']}>
+            <div className={styles['search-button']}>
+                <Search placeholder='domain' onSearch={onSearch} allowClear />
+                <Search
+                    placeholder='搜索cookies信息'
+                    onSearch={onSearch}
+                    allowClear
+                />
+            </div>
+
             <Table
                 sticky
-                scroll={{ scrollToFirstRowOnChange: true, x: '220%', y: 320 }}
+                scroll={{ scrollToFirstRowOnChange: true, x: '220%', y: 385 }}
                 columns={columns}
                 dataSource={cookies_for_show}
                 size='small'
