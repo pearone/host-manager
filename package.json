@@ -30,6 +30,7 @@
     },
     "dependencies": {
         "@ant-design/icons": "^4.7.0",
+        "@dpdfe/event-utils": "^0.0.8",
         "antd": "^4.19.5",
         "less": "^4.1.2",
         "postcss-less": "^6.0.0",

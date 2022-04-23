@@ -2,7 +2,10 @@ import React, { useEffect } from 'react';
 import { Tabs } from 'antd';
 import CookiesPanel from './component/cookies-panel';
 import HostsPanel from './component/hosts-panel';
+import SettingsPanel from './component/setting-panel';
+import { SettingOutlined } from '@ant-design/icons';
 import './styles/index.less';
+
 const { TabPane } = Tabs;
 
 function Container() {
@@ -21,6 +24,9 @@ function Container() {
                 </TabPane>
                 <TabPane tab='Host' key='host'>
                     <HostsPanel></HostsPanel>
+                </TabPane>
+                <TabPane tab={<SettingOutlined />} key='setting'>
+                    <SettingsPanel></SettingsPanel>
                 </TabPane>
             </Tabs>
         </div>

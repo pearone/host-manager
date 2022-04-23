@@ -281,6 +281,11 @@
   resolved "https://registry.npmmirror.com/@ctrl/tinycolor/-/tinycolor-3.4.1.tgz"
   integrity sha512-ej5oVy6lykXsvieQtqZxCOaLT+xD4+QNarq78cIYISHmZXshCvROLudpQN3lfL8G0NL7plMSSK+zlyvCaIJ4Iw==
 
+"@dpdfe/event-utils@^0.0.8":
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/@dpdfe/event-utils/-/event-utils-0.0.8.tgz#c57897b0f7ce57cd80cf8207b0fb596cd2ef9656"
+  integrity sha512-O5bPAzYijMu9PFxLM3sue+rncmB7IswVYVS43/UxM8hgB28UZdQuQgN6mvL1VUBZsVbeirpORoMpB4pQPbeGeg==
+
 "@eslint/eslintrc@^1.2.1":
   version "1.2.1"
   resolved "https://registry.npmmirror.com/@eslint/eslintrc/-/eslintrc-1.2.1.tgz"

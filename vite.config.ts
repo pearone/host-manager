@@ -15,6 +15,8 @@ export default defineConfig({
             less: {
                 javascriptEnabled: true,
                 modifyVars: {
+                    'primary-color': '#1DA57A',
+                    'link-color': '#1DA57A',
                     hack: `true; @import (reference) "${path.resolve(
                         'src/styles/base.less'
                     )}";`
