@@ -273,7 +273,7 @@ function CookiesPanel() {
                             '会话'
                         ) : (
                             <Popover
-                                trigger='click'
+                                trigger='hover'
                                 content={
                                     <div>
                                         <span>
