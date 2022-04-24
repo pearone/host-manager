@@ -24,7 +24,7 @@ import styles from './cookies.module.less';
 
 /**
  * TODO:
- * 有一些cookies显示多出来了
+ * 有一些cookies显示多出来了，dev_tool cookies 显示逻辑
  */
 /**
  * cookies
@@ -32,9 +32,13 @@ import styles from './cookies.module.less';
  */
 function CookiesPanel() {
     // 从storage里读上次
-    const [domain, setDomain] = useState<string>(storage.domain);
+    const [domain, setDomain] = useState<string>(
+        storage.use_current_tab ? '' : storage.domain
+    );
 
-    const [message, setMessage] = useState<string>(storage.message);
+    const [message, setMessage] = useState<string>(
+        storage.use_current_tab ? '' : storage.message
+    );
 
     const [cookies, setCookies] = useState<chrome.cookies.Cookie[]>([]);
 
@@ -61,6 +65,7 @@ function CookiesPanel() {
             console.log(url);
 
             const path = url?.hostname.split('.');
+            // const path = 'wuba.xinghuo.58.com'.split('.');
 
             if (path) {
                 while (path?.length > 1) {
