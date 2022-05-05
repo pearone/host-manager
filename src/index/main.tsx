@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import Container from './container';
 import zhCN from 'antd/lib/locale/zh_CN';
 import { ConfigProvider } from 'antd';
-import './index.css';
+import '../styles/index.less';
 
 const container = document.getElementById('root');
 

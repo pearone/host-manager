@@ -3,8 +3,8 @@ class CookiesImpl {
      * 获取全量的cookies
      * @returns Promise<chrome.cookies.Cookie[]>
      */
-    async getCookies(domain?: string) {
-        return await chrome.cookies.getAll({ domain });
+    async getCookies(url?: string) {
+        return await chrome.cookies.getAll({ url });
     }
 
     /**

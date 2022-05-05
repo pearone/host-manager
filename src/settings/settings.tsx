@@ -25,7 +25,7 @@ function SettingsPanel() {
                             setUseCurrentTab(e.target.checked);
                         }}
                     >
-                        是否默认使用当前tab URL
+                        是否默认使用当前页面cookies
                     </Checkbox>
                 );
             /**
@@ -52,7 +52,7 @@ function SettingsPanel() {
         >
             {tools.map((t) => {
                 return (
-                    <Panel header={t.name} key={t.key}>
+                    <Panel header={<h3>{t.name}</h3>} key={t.key}>
                         <Components key={t.key} name={t.key}></Components>
                     </Panel>
                 );

@@ -3,7 +3,7 @@
     "minimum_chrome_version": "24",
     "version": "0.0.0",
     "scripts": {
-        "dev": "run-p hmr watch:js watch:ts",
+        "dev": "run-p hmr watch:js",
         "hmr": "vite",
         "watch:ts": "tsc -w",
         "watch:js": "vite build --watch",

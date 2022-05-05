@@ -23,10 +23,6 @@ import './cookies.module.less';
 import styles from './cookies.module.less';
 
 /**
- * TODO:
- * 有一些cookies显示多出来了，dev_tool cookies 显示逻辑
- */
-/**
  * cookies
  * @returns
  */
@@ -58,36 +54,19 @@ function CookiesPanel() {
      * init
      */
     const init = async () => {
-        const domains: string[] = [];
-
+        let cookies: chrome.cookies.Cookie[] = [];
         if (storage.use_current_tab) {
             const url = await getChromeTabURL();
-            console.log(url);
 
-            const path = url?.hostname.split('.');
-            // const path = 'wuba.xinghuo.58.com'.split('.');
+            // const path = 'wuba.xinghuo.58.com';
 
-            if (path) {
-                while (path?.length > 1) {
-                    domains.push(path.join('.'));
-                    path.shift();
-                }
-            }
-        }
-
-        if (domains.length > 0) {
-            Promise.all(
-                domains.map(async (domain) => {
-                    console.log('domain: ' + domain);
-                    return await cookies_instance.current.getCookies(domain);
-                })
-            ).then((res) => {
-                console.log(res);
-                setCookies(res.flat());
-            });
+            cookies = await cookies_instance.current.getCookies(
+                url ? url.href : undefined
+            );
         } else {
-            setCookies(await cookies_instance.current.getCookies());
+            cookies = await cookies_instance.current.getCookies();
         }
+        setCookies(cookies);
     };
 
     /**
@@ -181,21 +160,64 @@ function CookiesPanel() {
 
     const columns: ColumnsType<chrome.cookies.Cookie> = [
         {
+            title: 'Action',
+            key: 'action',
+            width: 80,
+            align: 'center',
+            render: (_: any, record: any) => {
+                return (
+                    <Button
+                        type='link'
+                        onClick={() => {
+                            removeCookies(record);
+                        }}
+                    >
+                        <DeleteOutlined />
+                    </Button>
+                    // <Popconfirm
+                    //     placement='topRight'
+                    //     title={`确认删除${record.domain}:${record.name}吗？删除后不可恢复！`}
+                    //     onConfirm={() => {
+                    //         removeCookies(record);
+                    //     }}
+                    //     okText='确定'
+                    //     cancelText='取消'
+                    // >
+                    //     <Button type='link'>
+                    //         <DeleteOutlined />
+                    //     </Button>
+                    // </Popconfirm>
+                );
+            }
+        },
+        {
             title: 'domain',
             dataIndex: 'domain',
             // fixed: 'left',
             width: 130,
-            render: (text: any) => <span>{text}</span>
+            render: (text: any) => <span>{text}</span>,
+            sorter: {
+                compare: (a, b) => (a.domain > b.domain ? 1 : -1),
+                multiple: 1
+            }
         },
         {
             title: 'name',
             dataIndex: 'name',
             width: 130,
-            render: (text: any) => <span>{text}</span>
+            render: (text: any) => <span>{text}</span>,
+            sorter: {
+                compare: (a, b) => (a.name > b.name ? 1 : -1),
+                multiple: 2
+            }
         },
         {
             title: 'value',
             dataIndex: 'value',
+            sorter: {
+                compare: (a, b) => (a.value > b.value ? 1 : -1),
+                multiple: 3
+            },
             render: (text: any, record: any, index: number) => {
                 return (
                     <div
@@ -332,29 +354,6 @@ function CookiesPanel() {
             align: 'center',
             render: (text: any) => {
                 return text ? <CheckOutlined /> : <></>;
-            }
-        },
-        {
-            title: 'Action',
-            key: 'action',
-            width: 80,
-            align: 'center',
-            render: (_: any, record: any) => {
-                return (
-                    <Popconfirm
-                        placement='topRight'
-                        title={`确认删除${record.domain}:${record.name}吗？删除后不可恢复！`}
-                        onConfirm={() => {
-                            removeCookies(record);
-                        }}
-                        okText='确定'
-                        cancelText='取消'
-                    >
-                        <Button type='link'>
-                            <DeleteOutlined />
-                        </Button>
-                    </Popconfirm>
-                );
             }
         }
     ];
